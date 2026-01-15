@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@config "../../tailwind.config.js"; 
+
+/* 
+  En Tailwind v4, para activar el modo oscuro manual (por clase 'dark'), 
+  necesitamos asegurarnos de que el sistema lo reconozca. 
+  
+  Sin embargo, como no tienes un tailwind.config.js complejo, 
+  vamos a limpiar las variables CSS que forzaban colores y 
+  dejar que las clases de utilidad (text-black, bg-white) manden.
+*/
+
+@theme {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* Configuramos el modo oscuro para que funcione con la clase .dark */
+@custom-variant dark (&:where(.dark, .dark *));
+
+body {
+  /* Reseteamos colores base para asegurar que las clases de Tailwind funcionen */
+  background-color: transparent; 
+  color: inherit;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
